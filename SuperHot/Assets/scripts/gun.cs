@@ -20,6 +20,7 @@ public class gun : MonoBehaviour {
         {
             Shoot();
             fire_particle.Play();
+
         }
 	}
 
