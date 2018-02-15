@@ -11,7 +11,7 @@ public class LevelManager : MonoBehaviour {
     void Start () {
         for (int i = 0; i < 3; i++)
         {
-            Instantiate(prefab, rooms[i].transform.position + new Vector3(Random.insideUnitCircle.x, 0, Random.insideUnitCircle.y), Quaternion.identity);
+            Instantiate(prefab, rooms[i].transform.position + new Vector3(Random.insideUnitCircle.x*3, 0, Random.insideUnitCircle.y*3), Quaternion.identity);
         }
 	}
 	
