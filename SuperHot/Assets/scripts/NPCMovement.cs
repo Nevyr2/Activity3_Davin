@@ -5,6 +5,7 @@ using UnityEngine;
 public class NPCMovement : MonoBehaviour {
 
     Transform tr_Player;
+    public Transform enemy;
     float f_RotSpeed = 3f;
     float f_MoveSpeed = 2f;
     bool inside = false;
@@ -20,9 +21,9 @@ public class NPCMovement : MonoBehaviour {
     {
         if (inside)
         {
-            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(tr_Player.position - transform.position), f_RotSpeed * Time.deltaTime);
-            transform.position += transform.forward * f_MoveSpeed * Time.deltaTime;
-            transform.position = new Vector3(transform.position.x, 0, transform.position.z);
+            enemy.transform.rotation = Quaternion.Slerp(enemy.transform.rotation, Quaternion.LookRotation(tr_Player.position - enemy.transform.position), f_RotSpeed * Time.deltaTime);
+            enemy.transform.position += enemy.transform.forward * f_MoveSpeed * Time.deltaTime;
+            enemy.transform.position = new Vector3(enemy.transform.position.x, 0.1f, enemy.transform.position.z);
         }
 	}
 
