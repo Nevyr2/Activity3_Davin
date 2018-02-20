@@ -2,33 +2,25 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class time_slow : MonoBehaviour {
+public class time_slow : MonoBehaviour
+{
 
-    float time_not_moving = 0f;
-    bool is_moving = true;
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update ()
-    {
-        if (!Input.GetKeyDown(KeyCode.W) && !Input.GetKeyDown(KeyCode.S) && !Input.GetKeyDown(KeyCode.D) && !Input.GetKeyDown(KeyCode.A) && Time.timeScale != 0)
-            Pause();
-        else
-        {
-            if ( Time.timeScale == 0)
-                Time.timeScale = 1;
-        }
-    }
-
-    void Pause()
+    private void Start()
     {
         Time.timeScale = 0;
     }
 
-    void Resume()
+    void Update ()
     {
-        Time.timeScale = 1;
+        if ((Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.A)) && Time.timeScale == 0)
+            Time.timeScale = 1;
+        else
+        {
+            if ( Time.timeScale == 1)
+                Time.timeScale = 0;
+        }
     }
+
+    
+
 }
