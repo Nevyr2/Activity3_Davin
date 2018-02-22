@@ -10,6 +10,7 @@ public class gun : MonoBehaviour {
     public float ImpactForce = 100f;
     Vector3 random_ball;
     public GameObject first_collider;
+    public bool dead = false;
 
     public GameObject ImpactEffect;
 
@@ -18,13 +19,15 @@ public class gun : MonoBehaviour {
 
 	void Update ()
     {
-		if (Input.GetKeyDown(KeyCode.Space) && Time.timeScale == 1)
+		if (Input.GetKeyDown(KeyCode.Space))
         {
-            first_collider.GetComponent<BoxCollider>().enabled = false;
-            Shoot();
+            if (!dead)
+            {
+                first_collider.GetComponent<BoxCollider>().enabled = false;
+                Shoot();
+                first_collider.GetComponent<BoxCollider>().enabled = true;
+            }
             fire_particle.Play();
-            first_collider.GetComponent<BoxCollider>().enabled = true;
-
         }
 	}
 
@@ -45,10 +48,6 @@ public class gun : MonoBehaviour {
                 Target.TakeDamage(damage);
                 GameObject impact = Instantiate(ImpactEffect, hit.point, Quaternion.LookRotation(hit.normal));
                 Destroy(impact, 0.5f);
-            }
-            else
-            {
-
             }
 
             if (hit.rigidbody != null)

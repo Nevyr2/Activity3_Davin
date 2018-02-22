@@ -1,23 +1,35 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityStandardAssets.Characters.FirstPerson;
 
 public class time_slow : MonoBehaviour
 {
+    public float slowMo = 0.1f;
+    public float normTime = 1;
+    private bool doSlowMo = false;
 
-    private void Start()
-    {
-        Time.timeScale = 0;
-    }
+    [SerializeField] private FirstPersonController player;
 
     void Update ()
     {
-        if ((Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.A)) && Time.timeScale == 0)
-            Time.timeScale = 1;
+        if (player.m_CharacterController.velocity.magnitude > 0)
+        {
+            if (doSlowMo)
+            {
+                Time.timeScale = normTime;
+                Time.fixedDeltaTime = 0.02f * Time.timeScale;
+                doSlowMo = false;
+            }
+        }
         else
         {
-            if ( Time.timeScale == 1)
-                Time.timeScale = 0;
+            if (!doSlowMo)
+            {
+                Time.timeScale = slowMo;
+                Time.fixedDeltaTime = 0.02f * Time.timeScale;
+                doSlowMo = true;
+            }
         }
     }
 
