@@ -21,7 +21,7 @@ public class NPCMovement : MonoBehaviour {
     {
         if (inside)
         {
-            enemy.transform.rotation = Quaternion.Slerp(enemy.transform.rotation, Quaternion.LookRotation(tr_Player.position - enemy.transform.position), f_RotSpeed * Time.deltaTime);
+            enemy.transform.rotation = Quaternion.Slerp(enemy.transform.rotation, Quaternion.LookRotation(tr_Player.position - enemy.transform.position), f_RotSpeed * Time.deltaTime*2);
             enemy.transform.position += enemy.transform.forward * f_MoveSpeed * Time.deltaTime;
             enemy.transform.position = new Vector3(enemy.transform.position.x, 0.1f, enemy.transform.position.z);
         }

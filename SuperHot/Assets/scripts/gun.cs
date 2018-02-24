@@ -15,7 +15,6 @@ public class gun : MonoBehaviour {
     public bool dead = false;
 
     public GameObject ImpactEffect;
-    private AudioSource gunAudio;
 
     public Camera fpsCam;
     private WaitForSeconds shotDuration = new WaitForSeconds(0.07f);
@@ -33,6 +32,7 @@ public class gun : MonoBehaviour {
     {
     	if (Input.GetKeyDown(KeyCode.Space) && Time.time > nextFire)
         {
+            GetComponent<AudioSource>().enabled = false;
             if (!dead)
             {
                 first_collider.GetComponent<BoxCollider>().enabled = false;
@@ -70,7 +70,7 @@ public class gun : MonoBehaviour {
                     laserLine.SetPosition(1, rayOrigin + (fpsCam.transform.forward * weaponRange));
                 }
 
-                first_collider.GetComponent<BoxCollider>().enabled = true;
+                //first_collider.GetComponent<BoxCollider>().enabled = true;
             }
         }
 	}
@@ -79,7 +79,7 @@ public class gun : MonoBehaviour {
 
     private IEnumerator ShotEffect()
     {
-        gunAudio.Play();
+        GetComponent<AudioSource>().enabled = true;
     	laserLine.enabled = true;
         yield return shotDuration;
 	    laserLine.enabled = false;
