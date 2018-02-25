@@ -8,11 +8,11 @@ public class patrolling : MonoBehaviour {
     public Transform[] waypoint;
     NavMeshAgent agent;
     int currentWaypointIndex = 0;
-    const int epsilon = 1;
+    const int epsilon = 2;
 	// Use this for initialization
 	void Start () {
         agent = GetComponent<NavMeshAgent>();
-        agent.SetDestination(waypoint[currentWaypointIndex].position);
+        agent.SetDestination(waypoint[4].position);
 	}
 	
 	// Update is called once per frame
