@@ -292,7 +292,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Level\Scripts\DRId.cs" />
-    <Compile Include="Assets\scripts\door_navmesh.cs" />
     <Compile Include="Assets\scripts\gun.cs" />
     <Compile Include="Assets\scripts\LevelManager.cs" />
     <Compile Include="Assets\scripts\NPCMovement.cs" />
