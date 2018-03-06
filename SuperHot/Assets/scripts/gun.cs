@@ -19,6 +19,8 @@ public class gun : MonoBehaviour {
     private WaitForSeconds shotDuration = new WaitForSeconds(0.07f);
     private LineRenderer laserLine;
     private float nextFire;
+    bool is_fire = false;
+    float is_fire_time = 0f;
 	
 
 
@@ -29,8 +31,10 @@ public class gun : MonoBehaviour {
 
     void Update ()
     {
-    	if (Input.GetKeyDown(KeyCode.Space) && Time.time > nextFire)
+    	if (Input.GetKeyDown(KeyCode.Space) && Time.time > nextFire && !is_fire)
         {
+            is_fire = true;
+            GameObject.Find("ShooterFPSWeapon").GetComponent<Animation>().enabled = true;
             GetComponent<AudioSource>().enabled = false;
 
             first_collider.GetComponent<BoxCollider>().enabled = false;
@@ -69,8 +73,20 @@ public class gun : MonoBehaviour {
                 }
 
                 //first_collider.GetComponent<BoxCollider>().enabled = true;
+
             }
-            
+
+            if (is_fire)
+            {
+                is_fire_time += Time.deltaTime;
+                if (is_fire_time > 1.5f)
+                {
+                    GameObject.Find("ShooterFPSWeapon").GetComponent<Animation>().enabled = false;
+                    is_fire = false;
+                    is_fire_time = 0;
+                }
+            }
+
         }
 	}
 
