@@ -7,7 +7,6 @@ public class patrolling : MonoBehaviour {
 
     public Transform[] waypoint;
     NavMeshAgent agent;
-    int currentWaypointIndex = 0;
     const int epsilon = 2;
 	// Use this for initialization
 	void Start () {
