@@ -39,7 +39,7 @@ public class gun : MonoBehaviour {
 
     void Update ()
     {
-    	if (Input.GetKeyDown(KeyCode.Space) && Time.time > nextFire && !is_fire)
+        if (Input.GetKeyDown(KeyCode.Space) && Time.time > nextFire && !is_fire)
         {
             is_fire = true;
             anim.Play("recul");
@@ -49,12 +49,11 @@ public class gun : MonoBehaviour {
 
             first_collider.GetComponent<BoxCollider>().enabled = false;
 
-	        nextFire = Time.time + fireRate;
+            nextFire = Time.time + fireRate;
 
             StartCoroutine(ShotEffect());
 
             Vector3 rayOrigin = fpsCam.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, 0));
-
             RaycastHit hit;
 
             laserLine.SetPosition(0, gunEnd.position);
@@ -77,15 +76,15 @@ public class gun : MonoBehaviour {
                 {
                     hit.rigidbody.AddForce(-hit.normal * hitForce);
                 }
-
                 else
                 {
                     laserLine.SetPosition(1, rayOrigin + (fpsCam.transform.forward * weaponRange));
                 }
-
-                //first_collider.GetComponent<BoxCollider>().enabled = true;
-
             }
+
+            first_collider.GetComponent<BoxCollider>().enabled = true;
+
+            
 
 
         }
